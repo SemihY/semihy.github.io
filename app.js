@@ -21,10 +21,12 @@ function Game(ui,width,height) {
   };
 
   this.levelUp = function(){
+    console.log("Refresh Level");
     this.start();
   }
 
   this.click = function(tile) {
+      console.log((tile.i+1)+ ":"+ (tile.j+1) );
       changeNegativeColor(tile);
       setTimeout(function() {
         checkCompleteStatus();
@@ -33,24 +35,19 @@ function Game(ui,width,height) {
 
   function changeNegativeColor(tile) {
     tile.changeColor(getNegativeColor(tile));
-    console.log(tile);
     
     if (next = getTile(tile.i + 1, tile.j)) {
       next.changeColor(getNegativeColor(next));
-      console.log(next);
       
     }
     if (next = getTile(tile.i - 1, tile.j)) {
       next.changeColor(getNegativeColor(next));
-      console.log(next);
     }
     if (next = getTile(tile.i, tile.j + 1)) {
       next.changeColor(getNegativeColor(next));
-      console.log(next);
     }
     if (next = getTile(tile.i, tile.j - 1)) {
       next.changeColor(getNegativeColor(next));
-      console.log(next);
     }
     
     updateTiles();
