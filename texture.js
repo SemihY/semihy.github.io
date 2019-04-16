@@ -1,7 +1,7 @@
 Stage({
     image : { src : "./main.png", ratio : 32 },
     textures : {
-      "easy"   : { x : 0,   y : 0,  width : 2,  height : 2 },
+      "retry"   : { x : 0,   y : 0,  width : 2,  height : 2 },
       "hard"   : { x : 2,   y : 0,  width : 2,  height : 2 },
       "tile-1" : { x : 4,   y : 0,  width : 2,  height : 2 },
       "tile-2" : { x : 6,   y : 0,  width : 2,  height : 2 },

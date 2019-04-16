@@ -4,8 +4,13 @@ function Game(ui,width,height) {
   
   var tiles = [];
   var tilesMap = {};
+  var level = 0;
 
   this.start = function(colors) {
+    
+    while (tiles.length) {
+      tiles[0].remove();
+    }
     colors = colors || 2;
     tilesMap = {}, tiles = [];
     for (var i = 0; i < width; i++) {
@@ -16,13 +21,7 @@ function Game(ui,width,height) {
   };
 
   this.levelUp = function(){
-    level++;
-    this.clear();
     this.start();
-  }
-
-  this.clear = function () {
-    ui.remove()
   }
 
   this.click = function(tile) {
@@ -145,6 +144,16 @@ Stage(function(stage) {
     align : 0.5
   });
 
+  Stage.image('retry').appendTo(board).pin({
+    alignX : 1,
+    alignY : 1,
+    handleY : 0,
+    offsetX : 0.5,
+    offsetY : 0.5
+  }).on(Mouse.CLICK, function() {
+    game.levelUp();
+  });
+
   // create game with ui callbacks
   var game = new Game({
     tile : function(tile) {
@@ -161,6 +170,9 @@ Stage(function(stage) {
           img.image('tile-' + tile.color).pin({
             handle : 0.5
           })
+        },
+        remove : function() {
+          img.tween(150).alpha(0).remove();
         }
       };
     },
